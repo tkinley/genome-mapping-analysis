@@ -42,4 +42,4 @@ The `multi_mapper_analysis.py` script identifies and counts multi-mapped and uni
 
 ## Example Data
 
-Place your SAM files in the `data/` directory. Example files are included for testing.
+Place your SAM files in the `data/` directory. 
