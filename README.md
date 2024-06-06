@@ -1,18 +1,45 @@
-# genome-mapping-analysis
-This repository contains Python scripts for analyzing genomic data from SAM files, focusing on mapping reads and filtering genes based on mapping quality and coverage.
-## Description
+# Genome Mapping Analysis
 
-This project provides a set of tools to:
-- Extract mapping information from SAM files
-- Summarize total mapped reads for each gene
-- Filter genes based on mapping quality and coverage thresholds
+This repository contains scripts for analyzing genome mapping data from SAM files. The scripts extract mapping information, filter genes based on mapped reads, and identify multi-mapped reads.
 
-## Installation
+## Structure
 
-To run the scripts, you need Python 3 and the following Python packages:
-- `pandas`
-- `pysam`
+- `scripts/`: Contains the Python scripts for data processing and analysis.
+- `data/`: Directory to store input SAM files.
+- `results/`: Directory to store output CSV files.
 
-You can install the required packages using pip:
-```bash
-pip install pandas pysam
+## Scripts
+
+### 1. Gene Filtering
+
+The `gene_filtering.py` script loads SAM files, merges mapping data, and filters genes based on mapped read thresholds.
+
+### 2. Multi-Mapper Analysis
+
+The `multi_mapper_analysis.py` script identifies and counts multi-mapped and unique-mapped reads in SAM files.
+
+## Usage
+
+1. Install the required packages:
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+2. Run the gene filtering script:
+    ```bash
+    python scripts/gene_filtering.py
+    ```
+
+3. Run the multi-mapper analysis script:
+    ```bash
+    python scripts/multi_mapper_analysis.py
+    ```
+
+## Requirements
+
+- pandas
+- pysam
+
+## Example Data
+
+Place your SAM files in the `data/` directory. Example files are included for testing.
