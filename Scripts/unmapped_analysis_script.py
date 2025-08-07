@@ -18,7 +18,7 @@ def get_mapping_info(sam_file):
             mapping_info[gene_id] += 1
     return mapping_info
 
-def load_and merge_sam_files(files):
+def load_and_merge_sam_files(files):
     """Load and merge SAM file data into a single DataFrame."""
     dataframes = []
     for file in files:
@@ -38,7 +38,7 @@ def filter_genes_by_threshold(df, threshold):
     return df[df['total_mapped_reads'] >= threshold]
 
 # List of SAM files
-sam_files = ["6A.sam", "6U.sam", "EA.sam", "EU.sam"]
+sam_files = ["data/6A.sam", "data/6U.sam", "data/EA.sam", "data/EU.sam"]
 
 # Load and merge SAM file data
 merged_df = load_and_merge_sam_files(sam_files)
