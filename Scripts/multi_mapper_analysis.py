@@ -2,21 +2,19 @@ import pysam
 import pandas as pd
 
 def count_multi_mappers(sam_file):
-    samfile = pysam.AlignmentFile(sam_file, "r")
-    mapping_info = {'gene_id': [], 'multi_mapped': [], 'unique_mapped': []}
-    for read in samfile.fetch():
-        if read.is_unmapped:
-            continue
-        gene_id = read.reference_name
-        if read.mapping_quality == 0:
-            mapping_info['gene_id'].append(gene_id)
-            mapping_info['multi_mapped'].append(1)
-            mapping_info['unique_mapped'].append(0)
-        else:
-            mapping_info['gene_id'].append(gene_id)
-            mapping_info['multi_mapped'].append(0)
-            mapping_info['unique_mapped'].append(1)
-    return pd.DataFrame(mapping_info).drop_duplicates(subset=['gene_id'])
+    mapping_info = {}
+    with pysam.AlignmentFile(sam_file, "r") as samfile:
+        for read in samfile.fetch():
+            if read.is_unmapped:
+                continue
+            gene_id = read.reference_name
+            if gene_id not in mapping_info:
+                mapping_info[gene_id] = {"multi_mapped": 0, "unique_mapped": 0}
+            if read.mapping_quality == 0:
+                mapping_info[gene_id]["multi_mapped"] += 1
+            else:
+                mapping_info[gene_id]["unique_mapped"] += 1
+    return pd.DataFrame.from_dict(mapping_info, orient="index").reset_index().rename(columns={"index": "gene_id"})
 
 # Count multi-mappers and unique-mappers in each SAM file
 df_6A = count_multi_mappers("data/6A.sam")
