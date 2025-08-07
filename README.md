@@ -1,22 +1,22 @@
 # Genome Mapping Analysis
 
-This repository contains scripts for analyzing genome mapping data from SAM files. The scripts extract mapping information, filter genes based on mapped reads, and identify multi-mapped reads.
+This repository contains scripts for analyzing genome mapping data from SAM files. The scripts extract mapping information, summarize mapped reads across genes, and identify multi-mapped reads.
 
 ## Structure
 
-- `scripts/`: Contains the Python scripts for data processing and analysis.
+- `Scripts/`: Contains the Python scripts for data processing and analysis.
 - `data/`: Directory to store input SAM files.
 - `results/`: Directory to store output CSV files.
 
 ## Scripts
 
-### 1. Gene Filtering
-
-The `gene_filtering.py` script loads SAM files, merges mapping data, and filters genes based on mapped read thresholds.
-
-### 2. Multi-Mapper Analysis
+### 1. Multi-Mapper Analysis
 
 The `multi_mapper_analysis.py` script identifies and counts multi-mapped and unique-mapped reads in SAM files.
+
+### 2. Unmapped Analysis
+
+The `unmapped_analysis_script.py` script merges data from multiple SAM files, summarizes mapped reads per gene, and filters genes using read-count thresholds.
 
 ## Usage
 
@@ -25,14 +25,14 @@ The `multi_mapper_analysis.py` script identifies and counts multi-mapped and uni
     pip install -r requirements.txt
     ```
 
-2. Run the gene filtering script:
+2. Run the multi-mapper analysis script:
     ```bash
-    python scripts/gene_filtering.py
+    python Scripts/multi_mapper_analysis.py
     ```
 
-3. Run the multi-mapper analysis script:
+3. Run the unmapped analysis script:
     ```bash
-    python scripts/multi_mapper_analysis.py
+    python Scripts/unmapped_analysis_script.py
     ```
 
 ## Requirements
